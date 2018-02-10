@@ -1,0 +1,213 @@
+
+
+
+clusterdef 1
+flat METAL29
+music EDAYREAD
+exittext "Seems like the Marine's barricades
+have fallen and the survivors were
+forced to retreat.
+
+You follow the advice you received from
+the radio, and head up to the Portal Testing
+Center, in another attempt at regrouping
+with your fellow Marines."
+
+
+clusterdef 2
+flat METAL29
+music EDAYREAD
+exittext "You finally found the other
+Marines! Now it's time to make
+a final push to the portal testing
+area, clear the area, set
+the portal's destination to
+Earth, and escape this nightmare!
+
+Now we are all going to leave
+this shithole, or die trying!"
+
+
+clusterdef 3
+flat METAL29
+music EDAYREAD
+exittext "You did it! Despite the death
+of all your companions, you destroyed
+the two imponent demons guarding the portal.
+Your ticket back home is finally here.
+
+As the sole survivor of this nightmare,
+you step out of the portal to claim your
+righteous prize: The green fields of Earth.
+Home, at last! Seems like you are somewhere
+in the mountains at East of California.
+
+But something just doesn't feels right.
+There is something strange in the air...
+You better investigate."
+
+
+clusterdef 4
+flat METAL29
+music EDAYREAD
+exittext "You reach an evac center with
+hundreds of civilians waiting for an
+extraction. You find the Marine Captain
+which informs you the situation:
+There is a huge portal at downtown
+Los Angeles spawning a torrent of demons.
+Washington will authorize a full-scale
+nuclear assault if we don't secure
+the city in the following days.
+The UAC MArines are facing trouble to
+approach the portal. Seems like huge armies
+attracts the attention of the Hellspawn.
+The captain asks you to take all the ammo you
+can, and try to breach their lines, and secure
+the portal. He also sends a few marines
+to accompain you.
+"
+
+
+clusterdef 5
+flat METAL29
+music EDAYREAD
+exittext "You reach the center of Los Angeles.
+The place is being corrupted by the presence
+of the portal, and now boiling hellish
+blood covers the streets.
+
+The US Air Force have been carpet bombing
+the city for days, but probably there are
+lots of demons around. Proceed with caution.
+Locate and secure the portal at 
+the UAC Headquarters, clear all hostiles
+close to it, then call in reinforcements.
+"
+
+
+clusterdef 6
+flat METAL29
+music EDAYREAD
+exittext "The entire UAC's Building was turned
+into a direct portal to Hell, and guarded
+by a giant monster. But you sucessfully take out
+the guardian all by yourself, then you call
+in the cavalry.
+
+As the reinforcements arrive, they soon notice
+that nothing can be done from this side to close
+the portal, so the High Command gives an order
+to invade Hell with all forces aviable. Followed
+by an entire platoon of UAC Marines, supported
+by vehicles and aircraft, you enter the portal.
+"
+
+
+clusterdef 7
+flat METAL29
+music EDAYREAD
+exittext "You sneak into the castle foothold and climb
+the giant tower. After you kill the giant cyberdemon
+guardian, you cross the bridge and reach the upper part
+of Hell. The army is left behind at the foothold fighting
+against enemy reinforcements. You proceed alone, as a lone
+marine would draw much less attention from the demons, as
+they would focus all their forces on fighting the Marine army
+setting up a camp near the portal.
+"
+
+
+
+clusterdef 8
+flat METAL29
+music EDAYREAD
+exittext "As you approach a giant demon city, you
+receive a message from command telling you that the
+army is retreating from the tower's foothold. Seems
+like they sufferend thousands of casualities and got
+hundreds of marines captured or missing in action.
+They decided to fall back to Earth, and use the portal
+to funnel down the demon invasion, and keep killing them
+just as they step out of the portal.
+
+Seems like you are the last marine deployed in Hell.
+But seems like the high command got you right where
+they wanted. They are sure that a single marine wandering
+beoyond their lines will not draw any big attention,
+so they send you coordinates of where they believe to be
+the source of the demonic armies. You should head
+to this position at north, and investigate.
+"
+
+
+
+
+clusterdef 9
+flat METAL29
+music EDAYREAD
+exittext "Your eyes can still barely believe
+what you have just seen. The poor Marines that
+decided to surrender have meet such brutal and
+gruesome fates on demonic concentration camps.
+May this serve as a reminder of what you
+are fighting against.
+
+You check your automap, and notice that you are
+getting close to the center of hell. Be prepared,
+the demons might put everything they still got
+to defend it.
+"
+
+
+clusterdef 10
+flat METAL29
+music EDAYREAD
+exittext "You did it! You destroyed
+the giant beast that was commanding the
+demonic army and the invasion is over!
+Earth is safe!
+
+Badly wounded from the fight you
+collapse into the dirt. Soon a squad
+of marines finds you and brings
+you back to the portal. Back
+on the Ruined Los Angeles, you
+reunite with your fellow marines
+where you are received as a hero
+and everyone wants to see
+the doomed marine who kicked
+satan's ass alone."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+clusterdef 65
+flat METAL29
+music EDAYREAD
+entertext "By now, you should have
+learned that steping on an evil bloody
+pentagram from hell might be a bad
+idea, but you do it anyway. Now
+not even you have any idea of where
+this portal has led you.
+
+The place is a lot colder than Los
+Angeles, so you probably are in a completely
+different part of the world. But you
+hear human voices across the door! Maybe
+they are friends? Maybe you should
+check it out!"

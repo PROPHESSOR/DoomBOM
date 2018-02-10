@@ -1,0 +1,53 @@
+brightmap Texture SPACOM1
+{
+   map "brightmaps/SPACOM1B.png"
+}
+
+brightmap Texture SPACOM2
+{
+   map "brightmaps/SPACOM1B.png"
+}
+
+brightmap Texture SPACOM3
+{
+   map "brightmaps/SPACOM1B.png"
+}
+
+brightmap Texture SPACOM4
+{
+   map "brightmaps/SPACOM1B.png"
+}
+
+
+//////////////////////////
+
+
+brightmap Texture COMPG1
+{
+   map "brightmaps/COMPG1B.png"
+}
+
+brightmap Texture COMPG2
+{
+   map "brightmaps/COMPG1B.png"
+}
+
+brightmap Texture COMPG3
+{
+   map "brightmaps/COMPG1B.png"
+}
+
+brightmap Texture COMPG4
+{
+   map "brightmaps/COMPG1B.png"
+}
+
+brightmap Texture COMPG5
+{
+   map "brightmaps/COMPG1B.png"
+}
+
+brightmap Texture COMPG6
+{
+   map "brightmaps/COMPG1B.png"
+}

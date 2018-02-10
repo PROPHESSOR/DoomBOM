@@ -1,0 +1,139 @@
+pointlight BIGLAMPS
+{
+    color 1.0 1.0 1.0
+    size 108
+    offset 0 -90 0
+}
+
+
+pointlight BIGLAMPS22
+{
+    color 1.0 1.0 1.0
+    size 108
+    offset 0 0 0
+}
+
+
+pointlight BIGLAMPSREDS
+{
+    color 1.0 0.0 0.0
+    size 118
+    offset 0 0 0
+}
+
+
+pointlight BIGLAMPSBLUES
+{
+    color 0.0 0.0 1.0
+    size 118
+    offset 0 0 0
+}
+
+pointlight BIGLAMPSYELLOWS
+{
+    color 1.0 1.0 0.0
+    size 118
+    offset 0 0 0
+}
+
+
+pointlight ALARMREDLAMP
+{
+    color 1.0 0.0 0.0
+    size 64
+    offset 0 0 90
+}
+
+
+pointlight BIGLAMPS22BIGGER
+{
+    color 1.0 1.0 1.0
+    size 168
+    offset 0 0 0
+}
+
+
+pulselight BIGREDTORCHES
+{
+    color 1.0 0.3 0.0
+    size 60
+    secondarySize 88
+    interval 0.1
+    offset 0 60 0
+}
+
+object CagedLights
+{
+    frame CAGEA { light BIGLAMPS }
+}
+
+object Alarm
+{
+    frame ALAR { light ALARMREDLAMP }
+}
+
+
+object LightPostsOn
+{
+    frame PSTE { light BIGLAMPS22BIGGER }
+}
+
+
+object StaticLightWhiteGround
+{
+    frame NULL { light BIGLAMPS22 }
+}
+
+
+object StaticLightRedGround
+{
+    frame NULL { light BIGLAMPSREDS }
+}
+
+object StaticLightWhiteCeiling
+{
+    frame NULL { light BIGLAMPS }
+}
+
+object StaticLightBlueGround
+{
+    frame NULL { light BIGLAMPSBLUES }
+}
+
+object StaticLightYellowGround
+{
+    frame NULL { light BIGLAMPSYELLOWS }
+}
+
+
+object RoffCandle
+{
+    frame CAN5 { light BIGREDTORCHES }
+}
+
+
+object Torch
+{
+    frame TORC { light BIGREDTORCHES }
+}
+
+
+object FirePitsOfHell
+{
+    frame F1RE { light BIGREDTORCHES }
+	frame F2RE { light BIGREDTORCHES }
+}
+
+
+object TankShellMuzzle
+{
+    frame TANK { light BIGREDTORCHES }
+}
+
+
+object HeavyMachinegunFlash
+{
+    frame HMGH { light BIGREDTORCHES }
+}
+
+

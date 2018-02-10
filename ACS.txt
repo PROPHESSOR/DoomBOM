@@ -1,0 +1,126 @@
+#library "ACS"
+#include "zcommon.acs"
+
+
+script 1541 ENTER
+{
+Sector_SetColor (350, 255, 170, 160);
+Sector_SetColor (351, 255, 170, 160);
+Sector_SetColor (352, 255, 170, 160);
+Sector_SetColor (353, 255, 170, 160);
+Sector_SetColor (354, 255, 170, 160);
+Sector_SetColor (355, 255, 170, 160);
+Sector_SetColor (356, 255, 170, 160);
+Sector_SetColor (357, 255, 170, 160);
+Sector_SetColor (358, 255, 170, 160);
+Sector_SetColor (359, 255, 170, 160);
+
+
+Sector_SetColor (360, 255, 150, 150);
+Sector_SetColor (361, 255, 150, 150);
+Sector_SetColor (362, 255, 150, 150);
+Sector_SetColor (363, 255, 150, 150);
+Sector_SetColor (364, 255, 150, 150);
+Sector_SetColor (365, 255, 150, 150);
+Sector_SetColor (366, 255, 150, 150);
+Sector_SetColor (367, 255, 150, 150);
+Sector_SetColor (368, 255, 150, 150);
+Sector_SetColor (369, 255, 150, 150);
+
+
+Sector_SetColor (370, 255, 200, 160);
+
+
+//
+
+Sector_SetFade (350, 225, 80, 40);
+Sector_SetFade (351, 225, 80, 40);
+Sector_SetFade (352, 225, 80, 40);
+Sector_SetFade (353, 225, 80, 40);
+Sector_SetFade (354, 225, 80, 40);
+Sector_SetFade (355, 225, 80, 40);
+Sector_SetFade (356, 225, 80, 40);
+Sector_SetFade (357, 225, 80, 40);
+Sector_SetFade (358, 225, 80, 40);
+Sector_SetFade (359, 225, 80, 40);
+
+
+Sector_SetFade (360, 255, 100, 100);
+Sector_SetFade (361, 255, 100, 100);
+Sector_SetFade (362, 255, 100, 100);
+Sector_SetFade (363, 255, 100, 100);
+Sector_SetFade (364, 255, 100, 100);
+Sector_SetFade (365, 255, 100, 100);
+Sector_SetFade (366, 255, 100, 100);
+Sector_SetFade (367, 255, 100, 100);
+Sector_SetFade (368, 255, 100, 100);
+Sector_SetFade (369, 255, 100, 100);
+Sector_SetFade (370, 255, 200, 160);
+}
+
+//Generic Breaking Glass 1
+script 31 (int atag0,int atag1,int atid1)
+    {
+        
+        SetLineTexture(atag1,SIDE_FRONT,TEXTURE_MIDDLE,"CRKGLS3");
+        SetLineTexture(atag1,SIDE_BACK,TEXTURE_MIDDLE,"CRKGLS3");
+		SpawnSpot("BrokenWindowSpawn", atid1, 0, 0);
+
+    }
+	
+	
+//Generic Breaking Glass 2
+script 32 (int atag0,int atag1,int atid1)
+    {
+        
+        SetLineTexture(atag1,SIDE_FRONT,TEXTURE_MIDDLE,"CRKGLS4");
+        SetLineTexture(atag1,SIDE_BACK,TEXTURE_MIDDLE,"CRKGLS4");
+		SpawnSpot("BrokenWindowSpawn", atid1, 0, 0);
+
+    }	
+	
+	
+	
+script 1532 (int atag0,int atag1,int atid1)
+    {
+        
+        SetLineTexture(atag1,SIDE_FRONT,TEXTURE_MIDDLE,"CRKGLS4");
+        SetLineTexture(atag1,SIDE_BACK,TEXTURE_MIDDLE,"CRKGLS4");
+		SpawnSpot("BrokenWindowSpawn", atid1, 0, 0);
+		SpawnSpot("BDECParticle25", atid1, 0, 0);
+
+    }	
+		
+
+	
+
+script 33 (void)
+{
+
+    //Let's write the Boss's name here.
+	setfont("BIGFONT");
+	HudMessageBold(s:"-= BOSS =-"; HUDMSG_PLAIN, 0, CR_RED, 1.5, 0.09, 0.1, 1.0);
+	
+	
+	//How much health the boss currently has.
+	setfont("SMALLFONT");
+	int	bosshealth = GetActorProperty(0, APROP_Health);
+	HudMessageBold(d:bosshealth; HUDMSG_PLAIN, 0, CR_WHITE, 1.43, 0.15, 0.1, 1.0);
+	
+	//Just a divider
+	HudMessageBold(s:"/"; HUDMSG_PLAIN, 0, CR_WHITE, 1.5, 0.15, 0.05, 1.0);
+	
+	
+	//The boss's max health.
+	int	bossmaxhealth = GetActorProperty(0, APROP_SpawnHealth);
+	HudMessageBold(d:bossmaxhealth; HUDMSG_PLAIN, 0, CR_WHITE, 1.57, 0.15, 0.1, 1.0);
+	delay(1);
+	
+	
+	//Check if the boss still is alive. If yes, repeat the script, if not, it ends here.
+	if (GetActorProperty(0, APROP_Health)> 1)
+	restart;
+	else
+    ;
+
+}	

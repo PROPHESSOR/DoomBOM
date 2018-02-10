@@ -1,0 +1,57 @@
+Model GreenCar     // Name of actor in DECORATE
+{
+   Path "models/Cars"    // Path to model in PK3
+   Model 0 "CAR.md2"    // Model index, model file
+   Skin 0 "CAR1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 0.6 0.6 0.6            // Scale values
+   ZOffset 0.0
+   
+   FrameIndex ELEC B 0 0         // The sprite lump, sprite frame, model index, frame number
+}
+
+
+Model BlueCar     // Name of actor in DECORATE
+{
+   Path "models/Cars"    // Path to model in PK3
+   Model 0 "CAR.md2"    // Model index, model file
+   Skin 0 "CAR1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 0.6 0.6 0.6            // Scale values
+   ZOffset 0.0
+   
+   FrameIndex ELEC B 0 0         // The sprite lump, sprite frame, model index, frame number
+}
+
+Model RedCar     // Name of actor in DECORATE
+{
+   Path "models/Cars"    // Path to model in PK3
+   Model 0 "CAR.md2"    // Model index, model file
+   Skin 0 "CAR1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 0.6 0.6 0.6            // Scale values
+   ZOffset 0.0
+   
+   FrameIndex ELEC B 0 0         // The sprite lump, sprite frame, model index, frame number
+}
+
+
+Model GrayCar     // Name of actor in DECORATE
+{
+   Path "models/Cars"    // Path to model in PK3
+   Model 0 "CAR.md2"    // Model index, model file
+   Skin 0 "CAR1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 0.6 0.6 0.6            // Scale values
+   ZOffset 0.0
+   
+   FrameIndex ELEC B 0 0         // The sprite lump, sprite frame, model index, frame number
+}
+
+
+Model FuckedUpCar     // Name of actor in DECORATE
+{
+   Path "models/Cars"    // Path to model in PK3
+   Model 0 "CAR.md2"    // Model index, model file
+   Skin 0 "CAR2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 0.6 0.6 0.6            // Scale values
+   ZOffset -2.0
+   
+   FrameIndex ELEC C 0 0         // The sprite lump, sprite frame, model index, frame number
+}

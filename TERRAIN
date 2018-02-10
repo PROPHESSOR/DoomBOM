@@ -1,0 +1,61 @@
+
+splash 	blood2
+{
+ smallclass 	bloodsplashbasesmall
+ smallclip		16
+ //smallsound	world/sludgegloopsmall
+
+
+ baseclass		bloodsplashbase3
+ chunkclass	bloodsplash
+ chunkxvelshift	8
+ chunkyvelshift	8
+ chunkzvelshift	8
+ chunkbasezvel	2
+ sound		world/sludgegloop
+ NoAlert
+}
+
+
+
+terrain	blood2
+{
+ footclip	 12
+ liquid
+ splash 	blood2
+}
+
+
+
+
+splash snow3
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/snow
+	NoAlert
+}
+
+
+terrain Snow3
+{
+ footclip	 2
+ splash Snow3
+}
+
+
+ifdoom
+floor HEFLOR12 Blood2
+floor SNOW1 Snow3
+floor SNOW2 Snow3
+floor SNOW3 Snow3
+floor SNOW4 Snow3
+endif

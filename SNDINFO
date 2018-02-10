@@ -1,0 +1,203 @@
+CLOVERFI CLOVERFI
+ICOBREAT ICOBREAT
+ICOTHUND ICOTHUND
+ICOFIRE ICOFIRE
+NUKEEXPL NUKEEXPL
+
+CYBRLRD CYBRLRD
+CYBRLDIE CYBRLDIE
+
+$rolloff CYBRLRD 0 6400
+$rolloff CYBRLDIE 0 6400
+
+CARCRASH CARCRASH
+TREEDIE TREEDIE
+METDIE METDIE
+
+TANKFI TANKFI
+$rolloff TANKFI 1000 6400
+TANK1 TANK1
+TANK2 TANK2
+TANK3 TANK3
+TANKRE TANKRE
+
+SMLKNIFE SMLKNIFE
+$rolloff SMLKNIFE 600 1000
+
+FLUSH FLUSH
+EATING EATING
+SLURPING SLURPING
+
+CYBRLA $random{ CYBRLA1 CYBRLA2 }
+CYBRLA1 CYBRLA1
+CYBRLA2 CYBRLA2
+
+DSBOTTLE DSBOTTLE
+CYBRLWLK CYBRLWLK
+GLSFAL GLSFAL
+
+world/glassbreak DSBOTTLE
+
+HUGEEXPL HUGEEXPL
+$rolloff HUGEEXPL 8000 9400
+
+$rolloff CYBRLA 0 6400
+$rolloff CYBRLA1 0 6400
+$rolloff CYBRLA2 0 6400
+
+
+FIREFIT3 FIREFIT3
+FIREFIT2 FIREFIT2
+FIREFIT1 FIREFIT1
+
+$rolloff FIREFIT1 9550 000
+$rolloff FIREFIT2 9550 000
+$rolloff FIREFIT3 9550 0
+
+
+FARBOMBS FARBOMBS
+$rolloff FARBOMBS 19550 29550
+
+ORDER1 ORDER1
+ORDER2 ORDER2
+ORDER3 ORDER3
+$rolloff ORDER1 9550 0
+$rolloff ORDER2 9550 0
+$rolloff ORDER3 9550 0
+
+RDIOCHAT RDIOCHAT
+$rolloff RDIOCHAT 1200 2000
+
+
+RDIOCHAT2 RDIOCHAT
+
+ALARM ALARM
+
+CYBRLWLK CYBRLWLK
+$rolloff CYBRLWLK 1000 3000
+
+WAFALL1 WAFALL1
+WAFALL2 WAFALL2
+WFLOW WFLOW
+WIND1 WIND1
+
+$rolloff WAFALL1 1000 2000
+$rolloff WAFALL2 1000 2000
+$rolloff WFLOW 2000 4000
+$rolloff WIND1 1000 2000
+
+CARALARM CARALARM
+
+STATIC STATIC
+EAS EAS
+$rolloff EAS 100 400
+$rolloff STATIC 100 400
+
+AMBRAIN	AMBRAIN
+$limit AMBRAIN 1
+
+DSBRK1 DSBRK1
+DSBRK2 DSBRK2
+ROCKFAL ROCKFAL
+
+
+$random Sparks/Spawn { Sparks/Sound1  Sparks/Sound2  Sparks/Sound3  Sparks/Sound4 }
+Sparks/Sound1		SPARKS1
+Sparks/Sound2		SPARKS2
+Sparks/Sound3		SPARKS3
+Sparks/Sound4		SPARKS4
+
+
+TRAINSTA TRAINSTA
+TRAINLOP TRAINLOP
+TRAINSTO TRAINSTO
+
+$rolloff TRAINSTA 2000 4000
+$rolloff TRAINLOP 2000 4000
+$rolloff TRAINSTO 2000 4000
+
+
+FLYBYCLO FLYBYCLO
+$rolloff FLYBYCLO 80000 100000
+
+FLYBYFAR FLYBYFAR
+$rolloff FLYBYFAR 80000 100000
+
+$random TORTURE { TORTURE1 TORTURE2 }
+TORTURE1 TORTURE1
+TORTURE2 TORTURE2
+TORTURE3 TORTURE3
+TORTURE4 TORTURE4
+TORTURE5 TORTURE5
+
+
+
+
+
+
+
+//INFERNO DEMON
+Inferno/Alert	INFRALRT
+Inferno/Walk	INFRWALK
+Inferno/Die		INFRDEAD
+Inferno/Active	INFRACTV
+Inferno/Step INFSTEP
+Apocalypse/Meteor COMETLNC
+Apocalypse/Death COMETEXP
+Meteor/Call DFATTACK
+weapons/firmfi dsfirmfi
+weapons/firex3 dsfirex3
+weapons/firbfi dsfirbfi
+weapons/hellex dshellex
+weapons/justfi dsjustfi
+monster/bomb FIREBALL
+monster/firebeamdeath IMPFIRE2
+monster/firebeamstart DARKFLAM
+pyro/explosion DSPIPEX1
+Glyph/Start FLAMESTR
+harvester/ghost shghscrm
+
+Infdem/see BE-SPOT1
+Infdem/active BE-GROWL
+Infdem/pain BE-PAIN1
+Infdem/death DYING
+
+KoraxStep               step//this is present in Hexen, but needs to be defined for Doom or Heretic
+
+
+$rolloff Glyph/Start 8000 10000
+$rolloff harvester/ghost 8000 10000
+$rolloff Infdem/see 8000 10000
+$rolloff Infdem/active 8000 10000
+$rolloff Infdem/pain 8000 10000
+$rolloff Infdem/death 8000 10000
+$rolloff Inferno/Alert 8000 10000
+$rolloff Inferno/Walk 8000 10000
+$rolloff Inferno/Die 8000 10000
+$rolloff Inferno/Active 8000 10000
+$rolloff KoraxStep  8000 10000
+$rolloff pyro/explosion 8000 10000
+$rolloff monster/firebeamstart 8000 10000
+$rolloff monster/firebeamdeath 8000 10000
+$rolloff monster/bomb 8000 10000
+
+
+
+
+TANKMG TANKMG
+
+
+
+
+$random AmbientThunder {THUN1 THUN2 THUN3 THUN4}
+THUN1 THUN1
+THUN2 THUN2
+THUN3 THUN3
+THUN4 THUN4
+THUN5 THUN5
+THUN6 THUN6
+THUN7 THUN7
+THUN8 THUN8
+THUN9 THUN9
+$limit AmbientThunder 10
+$rolloff AmbientThunder 99900 992500

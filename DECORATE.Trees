@@ -1,0 +1,1865 @@
+
+ACTOR BasicDebry
+{
+    Radius 0
+    Height 0
+    +NOTELEPORT
+    +DONTSPLASH
+	+MISSILE
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+    +THRUACTORS
+}
+
+
+
+
+ACTOR DarkPlantBloodType
+{
+Decal BrutalBloodSplat
+game Doom
++FORCEXYBILLBOARD
++GHOST
++NOBLOCKMAP
++NOGRAVITY
++NOCLIP
+-DONTSPLASH
+-ALLOWPARTICLES 
+Speed 0
+ states
+ {
+  Spawn:
+        TNT1 A 0
+        TNT1 AAAA 0 A_CustomMissile ("LeaveHitParticle1", 0, 0, random (0, 360), 2, random (0, 360))
+        stop
+ }
+}
+
+ACTOR SlimePlantBloodType: DarkPlantBloodType
+{
+ states
+ {
+  Spawn:
+        TNT1 A 0
+        TNT1 AAAA 0 A_CustomMissile ("LeaveHitParticle2", 0, 0, random (0, 360), 2, random (0, 360))
+        stop
+ }
+}
+
+Actor LeaveHitParticle1: BasicDebry
+{
+  Height 2
+  Radius 2
+  Mass 0
+  +SKYEXPLODE
+  +DOOMBOUNCE
+  BounceFactor 0.5
+  Gravity 0.6
+  Speed 6
+  States
+  {
+  Spawn:
+    LEVP ABCB 4
+	Stop
+  }
+}
+
+
+Actor LeaveHitParticle2: BasicDebry
+{
+  Height 2
+  Radius 2
+  Mass 0
+  +SKYEXPLODE
+  +DOOMBOUNCE
+  BounceFactor 0.5
+  Gravity 0.6
+  Speed 6
+  States
+  {
+  Spawn:
+    LEVG ABCB 4
+	Stop
+  }
+}
+
+
+
+Actor LeaveHitParticle3: BasicDebry
+{
+  Height 2
+  Radius 2
+  Mass 0
+  +SKYEXPLODE
+  +DOOMBOUNCE
+  BounceFactor 0.5
+  Gravity 0.6
+  Speed 4
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
+    Goto Spawn1
+	
+  Spawn1:
+    LEVP A 6
+	Stop
+  Spawn2:
+    LEVP B 6
+	Stop
+  Spawn3:
+    LEVP C 6
+	Stop	
+  Death:
+    TNT1 A 0
+	Stop
+  }
+}
+
+Actor TreeLeaves1: BasicDebry
+{
+  Height 2
+  Radius 2
+  Mass 0
+  +SKYEXPLODE
+  +DOOMBOUNCE
+  BounceFactor 0.01
+  Gravity 0.3
+  Speed 16
+  States
+  {
+  Spawn:
+    LEVP ABCB 2
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    LEVP B 3000
+	Stop
+  }
+}
+
+Actor TreeLeaves2: TreeLeaves1
+{
+  Gravity 0.6
+  States
+  {
+  Spawn:
+    LEVR ABCD 2
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    LEVP B 3000
+	Stop
+  }
+}
+
+
+Actor TreeLeaves4: TreeLeaves1
+{
+  Gravity 0.2
+  Speed 8
+  States
+  {
+  Spawn:
+    LEVG ABBCBB 2
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    LEVG B 3000
+	Stop
+  }
+}
+
+
+Actor TreeLeaves4Falling: TreeLeaves1
+{
+  Gravity 0.06
+  Speed 0
+  +THRUACTORS
+  States
+  {
+  Spawn:
+    LEVG ABB 2
+	TNT1 A 0 ThrustThing (random(0, 360), 2, 1, 0)
+	LEVG CBB 2
+	TNT1 A 0 ThrustThing (random(0, 360), 2, 1, 0)
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    LEVG B 500
+	Stop
+  }
+}
+
+
+
+// Tall Small Tree
+ACTOR Plant01 1278
+{
+	Radius 5
+	Height 40
+	-SOLID
+	+SHOOTABLE
+	+NOBLOOD
+	MONSTER
+	+FRIENDLY
+	-COUNTKILL
+	Mass 99999999
+	Health 100
+	Bloodtype "LeafyPlantBloodTYpe", "LeafyPlantBloodTYpe", "LeafyPlantBloodTYpe"
+	DamageFactor "Alarm", 0.0
+	damagefactor "Blood", 0.0 damagefactor "BlueBlood", 0.0 damagefactor "GreenBlood", 0.0    damagefactor "Avoid", 0.0 
+	damagefactor "Shrapnel", 0.0	damagefactor "KillMe", 0.0
+	damagefactor "PlantRemove", 9999.0
+	States
+	{
+	Spawn:
+		PLNT A -1
+		Stop
+	Death:
+	TNT1 A 0 A_NoBlocking
+	TNT1 AAAAAAAAAAA 0 A_CustomMissile ("LeafParticle", 20, 0, random (0, 360), 2, random (30, 160))
+	TNT1 AA 0 A_CustomMissile ("BushPiece1", 20, 0, random (0, 360), 2, random (30, 160))
+	TNT1 AA 0 A_CustomMissile ("BushPiece2", 20, 0, random (0, 360), 2, random (30, 160))
+	Stop
+	}
+}
+
+// Fat Round Bush
+ACTOR Plant01B: Plant01 1277
+{
+	Radius 20
+	Height 20
+	Health 100
+	States
+	{
+	Spawn:
+		PLNT B -1
+		Stop
+	}
+}
+
+ACTOR Plant33: BasicActor Replaces Stalagtite
+{
+	States
+	{
+	Spawn:
+		SMIT A -1
+		Stop
+	}
+}
+
+//Desertic Plant/Bush
+Actor Plant02: Plant01 1290
+{
+
+Scale 0.8
+Health 60
+states
+	{
+	Spawn:
+	    PLNT C 1
+		PLNT C -1
+		Stop
+		
+	Death:
+		TNT1 A 0 A_NoBlocking
+		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("LeafParticle2", 20, 0, random (0, 360), 2, random (30, 160))
+		TNT1 AA 0 A_CustomMissile ("Plant02Piece1", 20, 0, random (0, 360), 2, random (30, 160))
+		TNT1 AA 0 A_CustomMissile ("Plant02Piece2", 20, 0, random (0, 360), 2, random (30, 160))
+		TNT1 A 0 A_CheckFloor("LeaveBody")
+		Stop	
+	LeaveBody:
+		PLND C 1
+		PLND C-1
+		Stop
+	}
+}
+
+ACTOR Plant02Piece1: BushPiece1
+{
+    States
+    {
+    Spawn:
+	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+        P2NP A 6
+        Loop
+    Death:
+       P2NP A 1
+	   P2NP A -1
+       Stop
+    }
+}
+
+
+ACTOR Plant02Piece2: BushPiece1
+{
+    States
+    {
+    Spawn:
+	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+        P2NP B 6
+        Loop
+    Death:
+       P2NP A 1
+	   P2NP B -1
+       Stop
+    }
+}
+
+//Large Bush
+Actor Plant03: Plant01 1292
+{
+Health 120
+Scale 1.0
+states
+	{
+	Spawn:
+	    PLNT D 1
+		PLNT D -1
+		Stop
+		
+	Death:
+		TNT1 A 0 A_NoBlocking
+		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("LeafParticle", 20, 0, random (0, 360), 2, random (30, 160))
+		TNT1 AA 0 A_CustomMissile ("BushPiece1", 20, 0, random (0, 360), 2, random (30, 160))
+		TNT1 AA 0 A_CustomMissile ("BushPiece2", 20, 0, random (0, 360), 2, random (30, 160))
+		TNT1 A 0 A_CheckFloor("LeaveBody")
+		Stop	
+	LeaveBody:
+		PLND D 1
+		PLND D -1
+		Stop
+	}
+}
+
+
+//Jungle Plant
+Actor Plant04: Plant01 1293
+{
+Health 50
+Scale 0.8
+states
+	{
+	Spawn:
+	    PLNT E 1
+		PLNT E -1
+		Stop
+	Death:
+		TNT1 A 1 A_NoBlocking
+		TNT1 AA 0 A_CustomMissile ("Plant04Piece1", 20, 0, random (0, 360), 2, random (30, 160))
+		TNT1 AA 0 A_CustomMissile ("Plant04Piece2", 20, 0, random (0, 360), 2, random (30, 160))
+		TNT1 A 0 A_CheckFloor("LeaveBody")
+		Stop	
+	LeaveBody:
+		PLND E 1
+		PLND E -1
+		Stop
+	}
+}
+
+
+ACTOR Plant04Piece1: BushPiece1
+{
+    States
+    {
+    Spawn:
+	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+        P3NP  A 6
+        Loop
+    Death:
+       P3NP A 1
+	   P3NP A -1
+       Stop
+    }
+}
+
+ACTOR Plant04Piece2: BushPiece1
+{
+    States
+    {
+    Spawn:
+	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+        P3NP  B 6
+        Loop
+    Death:
+       P3NP B 1
+	   P3NP B -1
+       Stop
+    }
+}
+
+Actor Plant05: Plant01 1294
+{
+
+Scale 0.8
+states
+	{
+	Spawn:
+	    PLNT F 1
+		PLNT F -1
+		Stop
+	}
+}
+
+
+Actor Plant06: Plant01 1295
+{
+
+Scale 0.8
+states
+	{
+	Spawn:
+	    PLNT G 1
+		PLNT G -1
+		Stop
+	}
+}
+
+Actor Plant07: Plant01 1490
+{
+
+Scale 0.9
+states
+	{
+	Spawn:
+	    PLNT H 1
+		PLNT H -1
+		Stop
+	}
+}
+
+Actor Plant08: Plant01 1491
+{
+
+Scale 1.0
+states
+	{
+	Spawn:
+	    PLNT J 1
+		PLNT J -1
+		Stop
+	}
+}
+
+
+Actor Plant10: Plant01 1991
+{
+
+Scale 0.5
+states
+	{
+	Spawn:
+	    PLNT I 1
+		PLNT I -1
+		Stop
+	}
+}
+
+Actor Plant11: Plant01 1992
+{
+
+Scale 0.9
+states
+	{
+	Spawn:
+	    PLNT K 1
+		PLNT K -1
+		Stop
+	}
+}
+
+Actor Plant12: Plant01 1993
+{
+
+Scale 0.9
+states
+	{
+	Spawn:
+	    PLNT L 1
+		PLNT L -1
+		Stop
+	}
+}
+
+Actor Plant16: Plant01 1994
+{
+
+Scale 0.9
+states
+	{
+	Spawn:
+	    PLNT M 1
+		PLNT M -1
+		Stop
+	}
+}
+
+Actor Plant13: Plant01 1995
+{
+
+Scale 0.6
+states
+	{
+	Spawn:
+	    PLNT N 1
+		PLNT N -1
+		Stop
+	}
+}
+
+
+
+Actor Grass01: Plant01 1492
+{
+-SHOOTABLE
++NOINTERACTION
++CLIENTSIDEONLY
+Scale 1.0
+states
+	{
+	Spawn:
+	    GRSS B 1
+		GRSS B -1
+		Stop
+	}
+}
+
+
+Actor Grass02: Grass01 1493
+{
+
+Scale 0.8
+states
+	{
+	Spawn:
+	    GRSS A 1
+		GRSS A -1
+		Stop
+	}
+}
+
+Actor Grass03: Grass01 1793
+{
+
+Scale 0.7
+states
+	{
+	Spawn:
+	    GRSS C 1
+		GRSS C -1
+		Stop
+	}
+}
+
+Actor Grass03Big: Grass01 1193
+{
+
+Scale 1.2
+states
+	{
+	Spawn:
+	    GRSS C 1
+		GRSS C -1
+		Stop
+	}
+}
+
+Actor Grass04: Grass01 1794
+{
+
+Scale 1.0
+states
+	{
+	Spawn:
+	    GRSS D 1
+		GRSS D -1
+		Stop
+	}
+}
+
+Actor Grass05: Grass01 1795
+{
+
+Scale 1.0
+states
+	{
+	Spawn:
+	    GRSS E 1
+		GRSS E -1
+		Stop
+	}
+}
+
+
+Actor Grass06: Grass01 1796
+{
+
+Scale 1.0
+states
+	{
+	Spawn:
+	    GRSS F 1
+		GRSS F -1
+		Stop
+	}
+}
+
+
+/////////////////////////////////////////////
+//////////////      Trees       /////////////
+/////////////////////////////////////////////
+
+Actor Tree01: Plant01 1296
+{
+
+Scale 1.0
++SOLID
+height 96
+radius 16
+Health 400
+states
+	{
+	Spawn:
+	    TREE A 1
+		TREE A -1
+		Stop
+		
+	Death:
+		TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile ("TreeLeaves1", 40, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAAAAA 0 A_CustomMissile ("TreeLeaves2", 40, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAA 0 A_CustomMissile ("Tree1Piece1", 40, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AA 0 A_CustomMissile ("Tree1Piece2", 40, 0, random (0, 360), 2, random (0, 180))
+		//TNT1 A 0 A_CustomMissile ("Tree1Piece3", 40, 0, random (0, 360), 2, random (0, 180))
+		TNT1 A 0 A_PlaySound("TREEDIE", 1)
+		TNT1 A 100 A_NoBlocking
+		Stop
+	
+	}
+}
+
+
+Actor Tree1Piece1: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 10
+  States
+  {
+  Spawn:
+    TP11 A 2
+    Loop
+ Death:
+    TP11 A 1
+	TP11 A -1
+	Stop
+  }
+}
+
+
+Actor Tree1Piece2: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TP11 B 2
+    Loop
+ Death:
+    TP11 B 1
+	TP11 B-1
+	Stop
+  }
+}
+
+
+Actor Tree02: Tree01 1297
+{
+
+states
+	{
+	Spawn:
+	    TREE B 1
+		TREE B -1
+		Stop
+Death:
+	TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile ("TreeLeaves1", 60, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAAAAA 0 A_CustomMissile ("TreeLeaves2", 60, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAA 0 A_CustomMissile ("Tree2Piece1", 60, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAA 0 A_CustomMissile ("Tree2Piece2", 60, 0, random (0, 360), 2, random (0, 180))
+	TNT1 A 0 A_CustomMissile ("Tree2Piece3", 60, 0, random (0, 360), 2, random (0, 180))
+	TNT1 A 0 A_PlaySound("TREEDIE", 1)
+	TNT1 A 100 A_NoBlocking
+	Stop
+	}
+}
+
+
+Actor Tree2Piece1: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 10
+  States
+  {
+  Spawn:
+    TP12 A 2
+    Loop
+ Death:
+    TP12 A 1
+	TP12 A -1
+	Stop
+  }
+}
+
+
+Actor Tree2Piece2: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TP12 B 2
+    Loop
+ Death:
+    TP12 B 1
+	TP12 B -1
+	Stop
+  }
+}
+
+
+
+Actor Tree2Piece3: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TP12 C 2
+    Loop
+ Death:
+    TP12 B 1
+	TP12 C -1
+	Stop
+  }
+}
+
+
+Actor Tree03: Tree01 1298
+{
+
+states
+	{
+	Spawn:
+	    TREE C 1
+		TREE C -1
+		Stop
+	Death:
+		TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile ("TreeLeaves1", 120, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAAAAA 0 A_CustomMissile ("TreeLeaves2", 120, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAA 0 A_CustomMissile ("Tree3Piece1", 140, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAA 0 A_CustomMissile ("Tree3Piece2", 140, 0, random (0, 360), 2, random (0, 180))
+		TNT1 A 0 A_PlaySound("TREEDIE", 1)
+		TNT1 A 100 A_NoBlocking
+		Stop
+	}
+}
+
+
+Actor Tree3Piece1: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 10
+  States
+  {
+  Spawn:
+    TP13 A 2
+    Loop
+ Death:
+    TP13 A 1
+	TP13 A -1
+	Stop
+  }
+}
+
+
+Actor Tree3Piece2: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TP13 B 2
+    Loop
+ Death:
+    TP13 B 1
+	TP13 B-1
+	Stop
+  }
+}
+
+Actor Tree04: Tree01 1299
+{
+
+states
+	{
+	Spawn:
+	    TREE D 1
+		TREE D -1
+Death:
+	TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile ("TreeLeaves1", 120, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAAAAA 0 A_CustomMissile ("TreeLeaves2", 120, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAA 0 A_CustomMissile ("Tree4Piece1", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAA 0 A_CustomMissile ("Tree4Piece2", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AA 0 A_CustomMissile ("Tree4Piece3", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 A 0 A_PlaySound("TREEDIE", 1)
+		TNT1 A 100 A_NoBlocking
+	Stop
+	}
+}
+
+
+Actor Tree4Piece1: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 10
+  States
+  {
+  Spawn:
+    TP14 A 2
+    Loop
+ Death:
+    TP14 A 1
+	TP14 A -1
+	Stop
+  }
+}
+
+
+Actor Tree4Piece2: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TP14 B 2
+    Loop
+ Death:
+    TP14 B 1
+	TP14 B -1
+	Stop
+  }
+}
+
+
+Actor Tree4Piece3: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TP14 C 2
+    Loop
+ Death:
+    TP14 C 1
+	TP14 C -1
+	Stop
+  }
+}
+
+
+
+Actor Tree05: Tree01 1300
+{
+
+states
+	{
+	Spawn:
+	    TREE E 1
+		TREE E -1
+		Stop
+Death:
+	TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile ("TreeLeaves1", 120, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAAAAA 0 A_CustomMissile ("TreeLeaves2", 120, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAAA 0 A_CustomMissile ("Tree5Piece1", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAAA 0 A_CustomMissile ("Tree5Piece2", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 A 0 A_PlaySound("TREEDIE", 1)
+	TNT1 A 100 A_NoBlocking
+	Stop
+	}
+}
+
+
+Actor Tree5Piece1: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 10
+  States
+  {
+  Spawn:
+    TP15 A 2
+    Loop
+ Death:
+    TP15 A 1
+	TP15 A -1
+	Stop
+  }
+}
+
+
+Actor Tree5Piece2: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TP15 B 2
+    Loop
+ Death:
+    TP15 B 1
+	TP15 B -1
+	Stop
+  }
+}
+
+Actor DeadTree01: Tree01 1301
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE F 1
+		TREE F -1
+		Stop
+	}
+}
+
+
+Actor DeadTree02: Tree01 1302
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE G 1
+		TREE G -1
+		Stop
+	}
+}
+
+
+Actor DeadTree03: Tree01 1303
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE H 1
+		TREE H -1
+		Stop
+	}
+}
+
+
+Actor Cactus: Tree01 1304
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE J 1
+		TREE J -1
+		Stop
+	}
+}
+
+
+Actor TreePine: Tree01 1704
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE I 1
+		TREE I -1
+		Stop
+	}
+}
+
+Actor Tree06: Tree01 1705
+{
+
+states
+	{
+	Spawn:
+	    TREE P 1
+		TREE P -1
+		Stop
+	}
+}
+
+
+Actor TreePine2: Tree01 3705
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE R 1
+		TREE R -1
+		Stop
+	}
+}
+
+
+
+Actor TreePine3: Tree01 3706
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE Q 1
+		TREE Q -1
+		Stop
+	}
+}
+
+
+Actor TreeJoshua1: Tree01 1706
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE K 1
+		TREE K -1
+		Stop
+	}
+}
+
+Actor TreeJoshua2: Tree01 1707
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE L 1
+		TREE L -1
+		Stop
+	}
+}
+
+Actor TreeDeadPalm: Tree01 1708
+{
++INVULNERABLE
+states
+	{
+	Spawn:
+	    TREE M 1
+		TREE M -1
+		Stop
+	}
+}
+
+
+
+
+Actor JunglePlantPiece1: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TPJP ABCDEFGH 2
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    TPJP I 1
+	TPJP I -1
+	Stop
+  }
+}
+
+
+Actor JunglePlantPiece2: TreeLeaves1
+{
+  Gravity 0.9
+  XScale -1.0
+  Speed 8
+  States
+  {
+  Spawn:
+    TPJP ABCDEFGH 2
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    TPJP I 1
+	TPJP I -1
+	Stop
+  }
+}
+
+
+Actor TreePalmPiece1: TreeLeaves1
+{
+  Gravity 0.4
+  Speed 8
+  States
+  {
+  Spawn:
+    TPPL ABCDEFGH 4
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    TPPL I 1
+	TPPL I -1
+	Stop
+  }
+}
+
+
+
+Actor TreePalmPiece2: TreeLeaves1
+{
+  Gravity 0.4
+  Speed 9
+  States
+  {
+  Spawn:
+    TPPL HGFEDCBA 4
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    TPPL I 1
+	TPPL I -1
+	Stop
+  }
+}
+
+
+Actor TreePalmPiece3: TreeLeaves1
+{
+  Gravity 0.2
+  Speed 9
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    PALT FFGHII 3
+	PALT IIGHFF 3
+    Loop
+ Death:
+    PALT G 1
+	PALT G -1
+	Stop
+  }
+}
+
+
+
+
+
+
+
+Actor NewJungleTree01 1743
+{
+Scale 1.0
++SOLID
+height 96
+radius 16
+Mass 9999999
++SHOOTABLE
++NOBLOOD
+Health 300
+states
+	{
+	Spawn:
+	    TREE U 200
+		TREE U -1 //A_SpawnItem("TreeLeaves4Falling", 0, 100)
+		Loop
+	Death:
+	TNT1 AAAAAAA 0 A_CustomMissile ("TreeJunglePiece6", 150, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAAAAA 0 A_CustomMissile ("TreeJunglePiece6", 90, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAA 0 A_CustomMissile ("TreeJunglePiece1", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAA 0 A_CustomMissile ("TreeJunglePiece2", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AA 0 A_CustomMissile ("TreeJunglePiece3", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 A 0 A_CustomMissile ("TreeJunglePiece4", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 A 0 A_CustomMissile ("TreeJunglePiece5", 140, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("TreeLeaves4", 140, 0, random (0, 360), 2, random (30, 160))
+	TNT1 A 0 A_PlaySound("TREEDIE", 1)
+		TNT1 A 100 A_NoBlocking
+	Stop
+	}
+}
+
+
+Actor NewJungleTree02: NewJungleTree01 1742
+{
+states
+	{
+	Spawn:
+	    TREE S 300
+		TREE S -1
+		Loop
+	}
+}
+
+
+Actor NewJungleTree03: NewJungleTree01 1741
+{
+states
+	{
+	Spawn:
+	    TREE T 400
+		TREE T -1 //A_SpawnItem("TreeLeaves4Falling", 0, 100)
+		Loop
+	}
+}
+
+
+
+
+
+Actor TreeJunglePiece1: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 10
+  States
+  {
+  Spawn:
+    TPJN A 2
+    Loop
+ Death:
+    TPJN A 1
+	TPJN A -1
+	Stop
+  }
+}
+
+
+Actor TreeJunglePiece2: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 10
+  States
+  {
+  Spawn:
+    TPJN B 2
+    Loop
+ Death:
+    TPJN B 1
+	TPJN B -1
+	Stop
+  }
+}
+
+
+Actor TreeJunglePiece3: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 6
+  States
+  {
+  Spawn:
+    TPJN C 2
+    Loop
+ Death:
+    TPJN C 1
+	TPJN C -1
+	Stop
+  }
+}
+
+
+Actor TreeJunglePiece4: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TPJN D 2
+    Loop
+ Death:
+    TPJN D 1
+	TPJN D -1
+	Stop
+  }
+}
+
+
+
+Actor TreeJunglePiece5: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 8
+  States
+  {
+  Spawn:
+    TPJN E 2
+    Loop
+ Death:
+    TPJN E 1
+	TPJN E -1
+	Stop
+  }
+}
+
+
+Actor TreeJunglePiece6: TreeLeaves1
+{
+  Gravity 0.9
+  Speed 16
+  States
+  {
+  Spawn:
+    TPJN F 2
+    Loop
+ Death:
+    TPJN G 1
+	TPJN G 100
+	Stop
+  }
+}
+
+
+Actor PalmTree 1279
+{
+Scale 1.8
++SOLID
+height 190
+radius 12
+Mass 9999999
++SHOOTABLE
++NOBLOOD
+Health 300
+states
+	{
+	Spawn:
+	    SPDC X 1
+		TNT1 A 0 A_Jump(192, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6") 
+		SPDC X -1
+		
+		Stop
+		
+	Spawn1:
+		SPDC X 1
+		TNT1 A 0 A_SetScale(1.8, 1.6)
+		SPDC X -1
+		Stop
+		
+	Spawn2:
+		SPDC X 1
+		TNT1 A 0 A_SetScale(-1.9, 1.9)
+		SPDC X -1
+		Stop
+		
+	Spawn3:
+		SPDC X 1
+		TNT1 A 0 A_SetScale(1.6, 1.9)
+		SPDC X -1
+		Stop
+		
+	
+	Spawn4:
+		SPDC X 1
+		TNT1 A 0 A_SetScale(-1.7, 1.9)
+		SPDC X -1
+		Stop
+		
+	Spawn5:
+		SPDC X 1
+		TNT1 A 0 A_SetScale(-1.8, 1.4)
+		SPDC X -1
+		Stop
+		
+		
+		
+	Spawn6:
+		SPDC X 1
+		TNT1 A 0 A_SetScale(1.7, 1.6)
+		SPDC X -1
+		Stop	
+		
+		
+	Death:
+	TNT1 AAAAAAAA 0 A_CustomMissile ("WoodParticle22567", 105, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece1", 140, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece2", 140, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece3", 140, 0, random (0, 360), 2, random (40, 140))
+	TNT1 A 0 A_NoBlocking
+	Stop
+	}
+}
+
+
+Actor PalmTreeTop
+{
+XScale 3.0
+YScale 2.0
++SOLID
+height 48
+radius 12
+Mass 9999999
++SHOOTABLE
++NOBLOOD
+MONSTER
+-COUNTKILL
++FRIENDLY
+Health 90
+DamageFactor "PalmTree", 25.0
+states
+	{
+	Spawn:
+	    PALM B 1
+		PALM B -1
+		Stop
+	Death:
+	TNT1 AAAAAAAA 0 A_CustomMissile ("WoodParticle22567", 15, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece1", 10, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece2", 10, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAAAAAA 0 A_CustomMissile ("TreePalmPiece3", 10, 0, random (0, 360), 2, random (40, 140))
+	TNT1 A 0 A_NoBlocking
+	Stop
+	
+	Death.Cut:
+	Death.Saw:
+	Death.PalmTree:
+	TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece3", 40, 0, random (0, 360), 2, random (40, 140))
+	TNT1 A 0 A_CustomMissile ("PalmTreeFlyingTop", 10, 0, random (0, 360), 2, random (0, 180))
+	TNT1 A 0 A_NoBlocking
+	Stop
+	
+	Death.Massacre:
+	TNT1 A 0
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 1 A_Scream
+	TNT1 A 0 A_SpawnItem("PalmTreeTop", 0, 2)
+	Stop
+	}
+}
+
+
+Actor PalmTreeWood1
+{
+Scale 1.0
++SOLID
+DamageFactor "PalmTree", 25.0
+height 68
+radius 12
+Mass 9999999
++SHOOTABLE
++NOBLOOD
+MONSTER
+-COUNTKILL
++FRIENDLY
+Health 100
+states
+	{
+	Spawn:
+	    PALM C 1
+		PALM C -1
+		Stop
+	Death:
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("WoodParticle22567", 15, 0, random (0, 360), 2, random (0, 180))
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_SpawnItem("PalmTreeKill", 0, 34) //222
+	TNT1 A 0 A_SpawnItem("PalmTreeKill", 0, 97) //222
+	TNT1 A 0 A_SpawnItem("PalmTreeKill", 0, 167) //222
+	TNT1 A 0 A_SpawnItem("PalmTreeKill", 0, 242) //222
+	Stop
+	
+	Death.PalmTree:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItem("PalmTreeKill", 0, 34) //222
+	TNT1 A 0 A_SpawnItem("PalmTreeKill", 0, 97) //222
+	TNT1 A 0 A_SpawnItem("PalmTreeKill", 0, 167) //222
+	TNT1 A 0 A_SpawnItem("PalmTreeKill", 0, 242) //222
+	Goto Death
+	
+	Death.Massacre:
+	TNT1 A 0
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 1 A_Scream
+	TNT1 A 0 A_SpawnItem("PalmTreeTop", 0, 2)
+	Stop
+	}
+}
+
+
+
+
+Actor WoodParticle22567
+{
+Scale 1.3
+bouncefactor 0.5
+speed 8
+gravity 0.5
+	+DOOMBOUNCE
+	+MISSILE
+	+THRUACTORS
+    +MOVEWITHSECTOR
+    +CLIENTSIDEONLY
+    +NOBLOCKMAP
+    +NOTELEPORT
+states
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0
+		WOOD ABCD 2
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+		loop
+   Death:
+   	TNT1 A 0
+      WOOD B 300
+      Stop
+   }
+}
+
+Actor PalmTreeWood2: PalmTreeWood1
+{
+height 70
+states
+	{
+	Spawn:
+	    PALM D 1
+		PALM D -1
+		Stop
+	}
+}
+
+
+
+Actor PalmTreeWood0: PalmTreeWood1
+{
+height 63
+states
+	{
+	Spawn:
+	    PALM E 1
+		PALM E -1
+		Stop
+	}
+}
+
+actor PalmTreeKill
+{
+	+NOTARGET
+Radius 10
+Height 10
+DamageType PalmTree
++NOGRAVITY
++NOTELEPORT
++NODAMAGETHRUST
++THRUGHOST
++NORADIUSDMG
++NOEXTREMEDEATH
+PROJECTILE
++DEHEXPLOSION
++ACTIVATEMCROSS
++SKYEXPLODE
++BOUNCEONCEILINGS
+States
+{
+Spawn:
+TNT1 A 0
+        TNT1 A 0 A_Explode(5,10, 0)
+Stop
+ }
+}
+
+Actor PalmTreeFlyingTop: BasicDebry
+{
+  Height 48
+  Radius 48
+  +SHOOTABLE
+  +DOOMBOUNCE
+  +NOBLOOD
+  Mass 99999
+  BounceFactor 0.03
+  Gravity 0.9
+  Speed 16
+  Damage 6
+  +NOEXTREMEDEATH
+  States
+  {
+  Spawn:
+    PALT ABCD 5
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Death")
+    Loop
+ Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItem("FallenPalmTreeTop")
+	Stop
+  }
+}
+
+
+Actor FallenPalmTreeTop
+{
+Scale 1.0
++SOLID
+height 48
+radius 48
+Mass 9999999
++SHOOTABLE
++NOBLOOD
+-SOLID
+Health 50
+states
+	{
+	Spawn:
+	    PALT E 1
+		PALT E -1
+		Stop
+	Death:
+	TNT1 AAAAAAAA 0 A_CustomMissile ("WoodParticle22567", 15, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece1", 40, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece2", 40, 0, random (0, 360), 2, random (0, 180))
+	TNT1 AAAA 0 A_CustomMissile ("TreePalmPiece3", 40, 0, random (0, 360), 2, random (40, 140))
+	TNT1 A 0 A_NoBlocking
+	Stop
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+Actor TreeJungleMassive 1239
+{
+Scale 3.0
++SOLID
++SHOOTABLE
++NOBLOOD
+height 64
+radius 22
+Mass 9999999
+states
+	{
+	Spawn:
+	    TNT1 A 0
+		
+		TNT1 A 0 A_SpawnItemEx("JungleTreePart", 100, 0, random(250, 300))
+		TNT1 A 0 A_SpawnItemEx("JungleTreePart", -100, 0, random(250, 300))
+		TNT1 A 0 A_SpawnItemEx("JungleTreePart", 100, 100, random(250, 300))
+		TNT1 A 0 A_SpawnItemEx("JungleTreePart", -100, -100, random(250, 300))
+		TNT1 A 0 A_SpawnItemEx("JungleTreePart", 100, -100, random(250, 300))
+		TNT1 A 0 A_SpawnItemEx("JungleTreePart", -100, 100, random(250, 300))
+		TNT1 A 0 A_SpawnItemEx ("JungleTreePartTop", 0, 0, random(300, 400),0,0,0,0,SXF_NOCHECKPOSITION,0)
+		//TNT1 A 0 A_SpawnItemEx ("JungleTreePart", 0, 0, 400,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		//TNT1 A 0 A_SpawnItem("PalmTreeTop", 0, 242) //222
+	    TRJ1 A 1
+		TRJ1 A -1
+		Stop
+	}
+}
+
+
+Actor JungleTreePart
+{
+Scale 1.0
+MONSTER
+-SHOOTABLE
++FRIENDLY
+-COUNTKILL
++THRUACTORS
++NOGRAVITY
++FLOAT
++FORCEXYBILLBOARD
+states
+	{
+	Spawn:
+	    TNT1 A 0
+		TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2")
+		
+	Spawn1:
+		TRJ1 B 1
+		TRJ1 B -1
+		Stop
+	
+	Spawn2:
+		TRJ1 C 1
+		TRJ1 C -1
+		Stop
+	}
+}
+
+Actor JungleTreePartTop: JungleTreePart
+{
+Scale 2.0
+}
+
+
+
+
+Actor Skybox_HellJungle 1240
+{
++CLIENTSIDEONLY
+
+Scale 0.06
+Radius 2
+Height 2
+states
+	{
+	Spawn:
+		TXSB A 1
+		TNT1 A 0 A_SpawnItemEx("Skybox_HellJungleTree", 8, 8)
+		TNT1 A 0 A_SpawnItemEx("Skybox_HellJungleTree", 8, -8)
+		TNT1 A 0 A_SpawnItemEx("Skybox_HellJungleTree", -8, -8)
+		TNT1 A 0 A_SpawnItemEx("Skybox_HellJungleTree", -8, 8)
+		TNT1 A 0 A_SpawnItemEx("Skybox_HellJungleTree", 0, 8)
+		TNT1 A 0 A_SpawnItemEx("Skybox_HellJungleTree", 0, -8)
+		TNT1 A 0 A_SpawnItemEx("Skybox_HellJungleTree", 8, 0)
+		TNT1 A 0 A_SpawnItemEx("Skybox_HellJungleTree", -8, 0)
+		Stop	
+	}
+}
+
+
+
+
+Actor Skybox_HellJungleTree
+{
++CLIENTSIDEONLY
++NOINTERACTION
+Scale 0.06
+Radius 1
+Height 1
+states
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
+	
+	Spawn1:
+		TXSB A 1
+		TXSB A -1
+		Stop
+		
+	Spawn2:
+		TXSB B 1
+		TXSB B -1
+		Stop
+		
+	Spawn3:
+		TXSB C 1
+		TXSB C -1
+		Stop	
+	}
+}
+
+
+
+
+Actor Skybox_HellBuildings1 1241
+{
++CLIENTSIDEONLY
++NOINTERACTION
+Scale 0.3
+Radius 1
+Height 1
+states
+	{
+	Spawn:
+		TXSB C 1
+		TXSB C -1
+		Stop
+		
+	}
+}
+
+
+
+Actor Skybox_HellBuildings2:  Skybox_HellBuildings1 1242
+{
+states
+	{
+	Spawn:
+		TXSB D 1
+		TXSB D -1
+		Stop
+		
+	}
+}
+
+
+Actor Skybox_HellBuildings3:  Skybox_HellBuildings1 1243
+{
+states
+	{
+	Spawn:
+		TXSB E 1
+		TXSB E -1
+		Stop
+		
+	}
+}
+
+
+Actor Skybox_HellBuildings4:  Skybox_HellBuildings1 1244
+{
+states
+	{
+	Spawn:
+		TXSB F 1
+		TXSB F -1
+		Stop
+		
+	}
+}
+
+
+Actor Skybox_HellBuildings5:  Skybox_HellBuildings1 1245
+{
+states
+	{
+	Spawn:
+		TXSB G 1
+		TXSB G -1
+		Stop
+		
+	}
+}
+
+
+
+Actor Skybox_HellBuildings6:  Skybox_HellBuildings1 1246
+{
+states
+	{
+	Spawn:
+		TXSB H 1
+		TXSB H -1
+		Stop
+		
+	}
+}
+
+
+Actor Skybox_HellBuildings7:  Skybox_HellBuildings1 1247
+{
+states
+	{
+	Spawn:
+		TXSB I 1
+		TXSB I -1
+		Stop
+		
+	}
+}

@@ -1,0 +1,279 @@
+ACTOR SuperNuclearExplosion
+{
+	Radius 12
+	Height 8
+	Speed 0
+	Damage 400
+	Projectile
+	+RANDOMIZE
+	+DEHEXPLOSION
+	+EXTREMEDEATH
+	RenderStyle Add
+	Alpha 0.75
+	Decal BFGScorch1
+	SeeSound "weapons/bfgx"
+	DeathSound "DSNUKXPL"
+	Obituary "$OB_MPROCKET"
+	ExplosionDamage 9999
+	ExplosionRadius 600
+	DamageType Desintegration
+	States
+	{
+	Spawn:
+
+   
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, 0)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, -30)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, 30)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, -60)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, 60)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, -90)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, 90)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, -120)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, 120)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, -150)  
+NULL A 0 A_CustomMissile("NukeRing3", 0, 0, 150)
+	    BPLO B 1 A_Explode
+		TNT1 A 0 Radius_Quake (20, 100, 0, 20, 0)
+		TNT1 A 0 Radius_Quake (10, 100, 0, 40, 0)
+		TNT1 A 0 Radius_Quake (5, 100, 0, 120, 0)
+		TNT1 AAAA 0 Bright A_SpawnItem("NuclearMushroom",0,0,0)
+		TNT1 AAAA 0 Bright A_SpawnItem("NuclearFlare",0,0,0)
+		TNT1 A 20
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAA 4 Bright A_SpawnItem("NuclearMushroom2")
+		TNT1 A 0
+		
+		
+		Stop
+	}
+}
+
+ACTOR NuclearMushroom
+{
+   Radius 8
+   Height 40
+   PROJECTILE
+   RENDERSTYLE Add
+   DamageType Burn
+   ALPHA 0.99
+   DONTHURTSHOOTER
+   +NOGRAVITY
+   +NOEXPLODEFLOOR
+   +NODAMAGETHRUST
+   +THRUGHOST
+   Scale 16.0
+   States
+   {
+   Spawn:
+      BFEI ABCDEFGHIJKL 4 BRIGHT
+      Stop
+   }
+}
+
+ACTOR NuclearMushroom2: NuclearMushroom
+{
+   States
+   {
+   Spawn:
+      BFEI HIJKL 4 BRIGHT
+      Stop
+   }
+}
+
+ACTOR NuclearFlare: NuclearMushroom
+{
+Alpha 0.7
+Scale 4.0
++FORCEXYBILLBOARD
+   States
+   {
+   Spawn:
+      FLAR AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT
+      FLAR AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_FadeOut(0.005)
+	  FLAR AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_FadeOut(0.01)
+      Stop
+   }
+}
+
+
+
+ACTOR NukeRing3
+{
+Speed 16
++NONSHOOTABLE+NOTELEPORT+NOCLIP+NOBLOCKMAP+EXTREMEDEATH
++NOGRAVITY
+RenderStyle Add
+Alpha 1.0
+YScale 10.0
+XScale 16.0
+Decal GiantScorch
+Obituary "%o was terminated by %k's nuclear rocket."
+States
+{
+Spawn:
+
+
+BBOM ABCCCCDDDDDDDDDEEEEEEEEFFFFGHIJKL 4 BRIGHT A_CustomMissile("Kaboooooom", 0, 0, 0)
+NULL A 0
+Stop
+   }
+}
+
+
+ACTOR NukeRing4
+{
+Speed 32
++NONSHOOTABLE+NOTELEPORT+NOCLIP+NOBLOCKMAP+EXTREMEDEATH
++NOGRAVITY
+RenderStyle Add
+Alpha 1.0
+Scale 3.0
+Decal GiantScorch
+Obituary "%o was terminated by %k's nuclear rocket."
+States
+{
+Spawn:
+
+
+BBOM ABCCCCDDDDDDDDDEEEEEEEEFFFFGHIJKL 1 BRIGHT A_CustomMissile("Kaboooooom", 0, 0, 0)
+NULL A 0
+Stop
+   }
+}
+
+
+ACTOR Kaboooooom
+{
+Speed 0
++NOBLOCKMAP
++NOGRAVITY
++NOCLIP
++NONSHOOTABLE
++EXTREMEDEATH
++FORCERADIUSDMG
+Decal GiantScorch
+ExplosionDamage 20
+ExplosionRadius 500
+DamageType Burn
+Scale 6.0
+SeeSound "weapons/rocklx"
+States
+{
+Spawn:
+NULL A 9 BRIGHT A_Explode
+Stop
+   }
+}
+
+
+
+
+
+ACTOR BasicParticle2
+{
+    Radius 0
+    Height 0
+    +NOTELEPORT
+    +DONTSPLASH
+	+MISSILE
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+    +THRUACTORS
+}
+
+
+
+
+ACTOR HollywoodFire2: BasicParticle2
+{
+	+NOGRAVITY
+	+DOOMBOUNCE
+	BounceFactor 0.5
+	Radius 0
+	Height 0
+	Alpha 1.0
+	RenderStyle Translucent
+	Scale 3.3
+	Speed 1
+	
+    States
+    {
+    Spawn:
+	FIR3 ABCDEFGHIJKL 2 BRIGHT A_SpawnItem("RedFlare")
+	TNT1 AA 0 A_CustomMissile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))
+	FIR3 MNOP 2 BRIGHT
+	//FIR3 PPPPPPPPPP 1 BRIGHT A_FadeOut(0.1)
+	Goto Death
+	Death:
+	    TNT1 A 0
+    Stop
+    }
+}
+
+
+ACTOR HollywoodFireBig2: HollywoodFire2
+{
+	Scale 9.0
+	Speed 6
+    States
+    {
+    Spawn:
+	FIR3 ABCDEFGHIJKL 2 BRIGHT
+	FIR3 MNOP 2 BRIGHT
+	Goto Death
+    }
+}
+
+ACTOR HollywoodExplosion2: BasicParticle2
+{
+	
+	+DOOMBOUNCE
+	+MISSILE
+	BounceFactor 0.5
+	Radius 0
+	Height 0
+	Alpha 1.0
+	RenderStyle Translucent
+	Scale 0.9
+	Speed 64
+	-NOGRAVITY
+	Gravity 0.8
+    States
+    {
+    Spawn:
+	TNT1 A 1
+	TNT1 A 0 A_PlaySoundEx("weapons/rocklx", 4, 0, 2)
+	FIR3 AAAAA 0 BRIGHT A_CustomMissile ("HollywoodFireBig2", 0, 0, random (0, 360), 2, random (0, 360))
+	FIR3 AAAAA 0 BRIGHT A_CustomMissile ("HollywoodExplosionlAUNHCER", 0, 0, random (0, 360), 2, random (20, 160))
+	Goto Death
+	Death:
+	    TNT1 A 20
+    Stop
+    }
+}
+
+
+
+ACTOR HollywoodExplosionlAUNHCER: BasicParticle2
+{
+	
+	+MISSILE
+	Radius 0
+	Height 0
+	Alpha 1.0
+	RenderStyle Translucent
+	Scale 0.9
+	Speed 64
+	-NOGRAVITY
+	Gravity 0.9
+    States
+    {
+    Spawn:
+	FIR3 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT A_CustomMissile ("HollywoodFire2", 0, 0, random (0, 360), 2, random (0, 360))
+	Goto Death
+	Death:
+	    TNT1 A 0
+    Stop
+    }
+}
+
